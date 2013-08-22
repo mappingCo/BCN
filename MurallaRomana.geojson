@@ -164,7 +164,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Templum": ""
+        "Templum": "Templo de augusto"
       },
       "geometry": {
         "type": "Polygon",
@@ -217,6 +217,19 @@
         "coordinates": [
           2.175896465778351,
           41.38193464048067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Punto": "Mont Taber"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.177135646343231,
+          41.38341180886551
         ]
       }
     }
