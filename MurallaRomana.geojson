@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Muralla": "Perímetro Barcino s. IX"
+        "Muralla": "Perímetro Barcino s. II"
       },
       "geometry": {
         "type": "LineString",
