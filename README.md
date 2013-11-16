@@ -1,4 +1,4 @@
 BCN
 ===
 
-Mapa Barcelona Romana
+Mapa Barcelona Romana en GeoJSON
