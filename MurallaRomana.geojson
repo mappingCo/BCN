@@ -4,7 +4,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Muralla": "Perímetro Barcino s. II"
+        "name": "Perímetro Barcino s. II",
+        "type": "Muralla"
       },
       "geometry": {
         "type": "LineString",
@@ -67,7 +68,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Calle": "Decumanus Maximus"
+        "name": "Decumanus Maximus",
+        "type": "Calle"
       },
       "geometry": {
         "type": "LineString",
@@ -86,7 +88,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Calle": "Cardo Maximus"
+        "name": "Cardo Maximus",
+        "type": "Calle"
       },
       "geometry": {
         "type": "LineString",
@@ -105,7 +108,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Entrada": "Porta Praetoria"
+        "name": "Porta Praetoria",
+        "type": "entrada"
       },
       "geometry": {
         "type": "Point",
@@ -118,7 +122,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Entrada": "Porta Decumana"
+        "name": "Porta Decumana",
+        "type": "entrada"
       },
       "geometry": {
         "type": "Point",
@@ -131,7 +136,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Plaza": "Forum"
+        "name": "Forum",
+        "type": "Forum"
       },
       "geometry": {
         "type": "Polygon",
@@ -164,7 +170,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Templum": "Templo de augusto"
+        "name": "Templo de augusto",
+        "type": "Templum"
       },
       "geometry": {
         "type": "Polygon",
@@ -197,7 +204,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Entrada": "Puerta Principalis Sinistra"
+        "name": "Puerta Principalis Sinistra",
+        "type": "entrada"
       },
       "geometry": {
         "type": "Point",
@@ -210,7 +218,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Entrada": "Porta Principalis Dextra"
+        "name": "Porta Principalis Dextra",
+        "type": "entrada"
       },
       "geometry": {
         "type": "Point",
@@ -223,7 +232,8 @@
     {
       "type": "Feature",
       "properties": {
-        "Punto": "Mont Taber"
+        "name": "Mont Taber",
+        "type": "point"
       },
       "geometry": {
         "type": "Point",
