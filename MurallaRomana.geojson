@@ -4,7 +4,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Muralla": "Perímetro Barcino s. II"
+=======
+        "name": "Perímetro Barcino s. II",
+        "type": "Muralla"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "LineString",
@@ -67,7 +72,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Calle": "Decumanus Maximus"
+=======
+        "name": "Decumanus Maximus",
+        "type": "Calle"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "LineString",
@@ -86,7 +96,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Calle": "Cardo Maximus"
+=======
+        "name": "Cardo Maximus",
+        "type": "Calle"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "LineString",
@@ -105,7 +120,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Entrada": "Porta Praetoria"
+=======
+        "name": "Porta Praetoria",
+        "type": "entrada"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Point",
@@ -118,7 +138,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Entrada": "Porta Decumana"
+=======
+        "name": "Porta Decumana",
+        "type": "entrada"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Point",
@@ -131,7 +156,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Plaza": "Forum"
+=======
+        "name": "Forum",
+        "type": "Forum"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Polygon",
@@ -164,7 +194,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Templum": "Templo de augusto"
+=======
+        "name": "Templo de augusto",
+        "type": "Templum"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Polygon",
@@ -197,7 +232,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Entrada": "Puerta Principalis Sinistra"
+=======
+        "name": "Puerta Principalis Sinistra",
+        "type": "entrada"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Point",
@@ -210,7 +250,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Entrada": "Porta Principalis Dextra"
+=======
+        "name": "Porta Principalis Dextra",
+        "type": "entrada"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Point",
@@ -223,7 +268,12 @@
     {
       "type": "Feature",
       "properties": {
+<<<<<<< HEAD
         "Punto": "Mont Taber"
+=======
+        "name": "Mont Taber",
+        "type": "point"
+>>>>>>> gh-pages
       },
       "geometry": {
         "type": "Point",

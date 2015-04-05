@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+ 		<title>Barcelona meridiana y paralelo</title>
+  		<meta charset="utf-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+  		<style>
+			body {
+			    padding: 0;
+			    margin: 0;
+			}
+			html, body, #map {
+			    height: 100%;
+			}
+			.sidepanel{
+				background-color:transparent; position: absolute; bottom: 0; right: 0; bottom: 0; width: 41%; height: 40%; overflow: auto;
+	
+			}
+			.context{margin-bottom: 20px; margin-right: 20px;margin-left: 10px;text-align: center; color:white}
+		</style>
+	</head>
+	<body>
+  		<div id="map"></div>
+  		<div class="sidepanel">
+  			<div class="context">
+  				<p>In 1860, the expansion of the city of Barcelona was defined as a grid structure know as The Cerdà Plan. <br>Cerdà designed two large perpendicular avenues that were 45º with the grid of the Eixample: the Parallel (East-West) and Meridiana (North-South).</p>
+  				<p>The Parallel Avenue continues the terrestrial parallel <b>41º 22' 29.71"N</b> and Avenida Meridiana is aligned according to the meridian <b>2º 11' 12.89"E</b><p>
+  				<p>The Parallel and Meridiana were cut perpendicular in the Old Lighthouse of the Port of Barcelona, now transformed into a clock (La torre del Rellotge, sXVIII) <p>
+  					<p>Bisector of the Parallel and Meridiana almost fit the <i>'Decumanus Maximus'</i> road of the ancient roman city.<p>
+  			</div>
+  		</div>
+	</body>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.3.0/turf.min.js'></script>
+
+	<script type="text/javascript">
+
+		// http://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values
+		function ConvertDMSToDD(degrees, minutes, seconds, direction) {
+		    var dd = degrees + minutes/60 + seconds/(60*60);
+
+		    if (direction == "S" || direction == "W") {
+		        dd = dd * -1;
+		    } // Don't do anything for N or E
+		    return dd;
+		}
+
+
+		var meridiano = ConvertDMSToDD(2, 11, 12.89, 'E');
+		var paralelo = ConvertDMSToDD(41, 22, 29.71, 'N');
+		console.log(meridiano);
+		console.log(paralelo);
+		var InitialCenter = new L.LatLng(41.3849, 2.18);
+		var map = L.map('map');
+
+		//create base maps layers
+		var osmlayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		  maxZoom: 18,
+		  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		});
+
+		var Sat = L.tileLayer( 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+			attribution: 'Map tiles by Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community.'
+
+		});
+  
+    	var spaceStation = L.tileLayer('http://a.tiles.mapbox.com/v3/examples.3hqcl3di/{z}/{x}/{y}.png', {attribution: 'Map tiles by <a href="https://www.mapbox.com/">Mapbox</a>, Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'})
+
+    	var darkmatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {attribution: '<a href="https://www.cartodb.com/">CartoDB</a>, Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'})
+		var baseLayers = {
+		  "osm": osmlayer,
+		  "Sat":Sat,
+		  "darkmatter":darkmatter,
+		  "spaceStation":spaceStation
+		};
+
+		darkmatter.addTo(map);
+		map.setView(InitialCenter, 13);
+
+		var meridiana = L.polyline([[41.4230031,meridiano],[ paralelo,meridiano] ], {color: 'red'}).addTo(map);
+		var granVia = L.polyline([[41.403555506,2.1871161460876465],[ 41.37509374614954,2.1490126848220825] ], {color: 'yellow'}).addTo(map);
+		var paralelo = L.polyline([[paralelo, 2.07],[paralelo, meridiano]] , {color: 'blue'}).addTo(map);
+		var diagonal = L.polyline([[41.403724500993604, 2.187180519104004],[41.375005186165616, 2.0733261108398438]] , {color: 'green'});
+
+		var torreRellotge = L.marker([41.37492668971545,2.1857723593711853]).addTo(map);
+
+		//var intersection = L.marker(InitialCenter).addTo(map);
+
+		var popupContent = "<b>Torre del Rellotge.</b></br><img src='http://astrogea.org/ipa/galeria/bcnmetro/fites/torre.rellotge.jpg' style='height: 210px; width: 150px;'>"
+		torreRellotge.bindPopup(popupContent);
+		meridiana.bindPopup("<h3>Meridian: 2º 11' 12.89\"E<h3>");
+		paralelo.bindPopup("<h3>Paralel 41º 22' 29.71\" N</h3>");
+		diagonal.bindPopup("Av. Diagonal");
+		granVia.bindPopup("Gran Vía de las Cortes Catalanas");
+
+
+		// biseztriz. calulate with turfJS bearing function
+
+		var point = {
+		  "type": "Feature",
+		  "properties": {
+		    "marker-color": "#0f0"
+		  },
+		  "geometry": {
+		    "type": "Point",
+		    "coordinates": [2.186913888888889, 41.374919444444444]
+		  }
+		}
+
+		var distance = 5;
+		var bearing = -45;//bisector
+		var units = 'kilometers';
+
+		var destination = turf.destination(point, distance, bearing, units);
+		destination.properties['marker-color'] = '#f00';
+
+		var result = {
+		  "type": "FeatureCollection",
+		  "features": [point, destination]
+		};
+
+		var bisectrizGeojson = turf.linestring([
+		   	[2.186913888888889, 41.374919444444444],
+		    [2.14453467439575, 41.406697514760424]
+		]);
+
+
+		var bisectriz = L.geoJson(bisectrizGeojson, {style: {color:"#ff7800"}});
+  
+		// add muralla romana
+		var murallaRomana
+		var murallaRomanaURL = "http://sigon426.github.io/BCN/MurallaRomana.geojson"
+		$.getJSON(murallaRomanaURL, function(response) {
+			console.log(response)
+		    murallaRomana = new L.GeoJSON(response, {
+	    	    filter: function(feature, layer) {
+	    	    	if (feature.geometry.type == 'Point'){
+	    	    		return false
+	    	    	}
+	    	    	else{
+			        	return true
+	    	    	}
+			    },
+		        style: {
+		            color: 'hotpink',
+		            fillColor: 'green',
+		            fillOpacity: 0.2
+		        },
+		        onEachFeature: function (feature, layer) {
+                  	layer.bindPopup(feature.properties.name);
+                }
+		    });
+
+		    murallaRomana;  
+		    var overlays = {
+			    "Meridian": meridiana,
+			    "Paralel": paralelo,
+			    "Gran Via St.": granVia,
+			    "Ancient roman city (s.II)": murallaRomana,
+			    "bisector of meridian and paralel": bisectriz,
+			    "Torre del Rellotge": torreRellotge,
+			    "Av Diagonal": diagonal
+			}
+			L.control.layers(baseLayers,overlays).addTo(map);  
+		});
+
+
+
+
+
+
+
+
+	</script>
+  
+
+</html>
